@@ -1,4 +1,4 @@
-package com.mad.finalproject
+package com.mad.myapplication
 
 import org.junit.Test
 

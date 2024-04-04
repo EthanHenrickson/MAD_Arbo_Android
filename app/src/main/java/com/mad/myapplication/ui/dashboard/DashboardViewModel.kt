@@ -1,13 +1,18 @@
-package com.mad.finalproject.ui.browse
+package com.mad.myapplication.ui.dashboard
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class BrowseViewModel : ViewModel() {
+class DashboardViewModel : ViewModel() {
+
+    fun onFilterClicked(){
+        _text.value = "Hi"
+    }
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
     }
-    val text: LiveData<String> = _text
+    var text: LiveData<String> = _text
 }

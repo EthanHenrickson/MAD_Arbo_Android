@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.mad.finalproject"
+    namespace = "com.mad.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.mad.finalproject"
+        applicationId = "com.mad.myapplication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
