@@ -17,25 +17,39 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34" />
 
     <Button
         android:id="@+id/filterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_width="102dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="9dp"
+        android:text="Filter"
+        app:layout_constraintBottom_toTopOf="@+id/noFilterButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toEndOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
+
+    <Button
+        android:id="@+id/noFilterButton"
+        android:layout_width="102dp"
+        android:layout_height="57dp"
         android:text="Filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toEndOf="@+id/scrollView2" />
 
     <ScrollView
-        android:layout_width="0dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="300dp"
         android:layout_height="150dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TableLayout
@@ -44,37 +58,53 @@
             android:stretchColumns="1">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBoxOak"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
+                android:checked="true"
+                android:text="Oak Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
 
-                tools:layout_editor_absoluteX="182dp"
-                tools:layout_editor_absoluteY="460dp" />
             <CheckBox
-                android:id="@+id/checkBox1"
+                android:id="@+id/checkBoxAsh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
+                android:checked="true"
+                android:text="Ash Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
+
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBoxPine"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
+                android:checked="true"
+                android:text="Pine Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
+
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/checkBoxCherry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CheckBox"
+                android:checked="true"
+                android:text="Cherry Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
 
         </TableLayout>
 
     </ScrollView>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
