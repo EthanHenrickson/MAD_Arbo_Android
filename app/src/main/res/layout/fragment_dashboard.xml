@@ -24,25 +24,14 @@
 
     <Button
         android:id="@+id/filterButton"
-        android:layout_width="102dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="9dp"
-        android:text="Filter"
-        app:layout_constraintBottom_toTopOf="@+id/noFilterButton"
+        android:layout_width="104dp"
+        android:layout_height="60dp"
+        android:text="Refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toEndOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="@+id/scrollView2" />
-
-    <Button
-        android:id="@+id/noFilterButton"
-        android:layout_width="102dp"
-        android:layout_height="57dp"
-        android:text="Filter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toEndOf="@+id/scrollView2" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -58,20 +47,73 @@
             android:stretchColumns="1">
 
             <CheckBox
-                android:id="@+id/checkBoxOak"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Oak Trees"
-                tools:layout_editor_absoluteX="182dp"
-                tools:layout_editor_absoluteY="460dp" />
-
-            <CheckBox
                 android:id="@+id/checkBoxAsh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="Ash Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxAspen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Aspen Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxBirch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Birch Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCedar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Cedar Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCherry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Cherry Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxElm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Elm Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+            <CheckBox
+                android:id="@+id/checkBoxMaple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Maple Trees"
+                tools:layout_editor_absoluteX="182dp"
+                tools:layout_editor_absoluteY="460dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxOak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Oak Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
 
@@ -85,13 +127,19 @@
                 tools:layout_editor_absoluteY="460dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxCherry"
+                android:id="@+id/checkBoxSpruce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Cherry Trees"
+                android:text="Spruce Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
+
+
+
+
+
+
 
         </TableLayout>
 

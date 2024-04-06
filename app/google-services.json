@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "217624842767",
+    "project_id": "arbo-94694",
+    "storage_bucket": "arbo-94694.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217624842767:android:6315bdbde3381be07f897a",
+        "android_client_info": {
+          "package_name": "com.mad.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217624842767-81rqqma96gflc3shqts7o8rp33ndej36.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQsHgY7XDhQaZicoj6VZy_EHyYS-SyhBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217624842767-81rqqma96gflc3shqts7o8rp33ndej36.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
