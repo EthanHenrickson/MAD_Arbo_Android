@@ -64,11 +64,18 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
 
         //add markers on map for trees
         for (test in treelist) {
-            mMap.addMarker(MarkerOptions().position(LatLng(test.get("lat").toString().toDouble(), test.get("lng").toString().toDouble())).title(""))
+            mMap.addMarker(
+                MarkerOptions().position(
+                    LatLng(
+                        test.get("lat").toString().toDouble(),
+                        test.get("lng").toString().toDouble()
+                    )
+                ).title("")
+            )
         }
 
         //Sets camera to be in bemidji area
-        val bemidji = LatLng(47.47,-94.88)
+        val bemidji = LatLng(47.47, -94.88)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bemidji, 10F))
 
     }
@@ -81,52 +88,51 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         // Asynchronously initialize the map
         mapFragment.getMapAsync(this)
 
-        binding.filterButton.setOnClickListener{
+        binding.filterButton.setOnClickListener {
             filterRefresh()
         }
 
     }
 
 
-
-    fun filterRefresh(){
+    fun filterRefresh() {
         mMap.clear()
 
         val treeCheck = mutableListOf<String>()
 
-        if(binding.checkBoxAspen.isChecked){
+        if (binding.checkBoxAspen.isChecked) {
             treeCheck.add("aspen")
         }
-        if(binding.checkBoxAsh.isChecked){
+        if (binding.checkBoxAsh.isChecked) {
             treeCheck.add("ash")
         }
-        if(binding.checkBoxBirch.isChecked){
+        if (binding.checkBoxBirch.isChecked) {
             treeCheck.add("birch")
         }
-        if(binding.checkBoxCedar.isChecked){
+        if (binding.checkBoxCedar.isChecked) {
             treeCheck.add("cedar")
         }
-        if(binding.checkBoxCherry.isChecked){
+        if (binding.checkBoxCherry.isChecked) {
             treeCheck.add("cherry")
         }
-        if(binding.checkBoxElm.isChecked){
+        if (binding.checkBoxElm.isChecked) {
             treeCheck.add("elm")
         }
-        if(binding.checkBoxMaple.isChecked){
+        if (binding.checkBoxMaple.isChecked) {
             treeCheck.add("maple")
         }
-        if(binding.checkBoxOak.isChecked){
+        if (binding.checkBoxOak.isChecked) {
             treeCheck.add("oak")
         }
-        if(binding.checkBoxPine.isChecked){
+        if (binding.checkBoxPine.isChecked) {
             treeCheck.add("pine")
         }
-        if(binding.checkBoxSpruce.isChecked){
+        if (binding.checkBoxSpruce.isChecked) {
             treeCheck.add("spruce")
         }
 
 
-        for (test in treelist){
+        for (test in treelist) {
             if (treeCheck.contains(test.get("type").toString().lowercase())) {
                 mMap.addMarker(
                     MarkerOptions().position(
@@ -139,6 +145,7 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

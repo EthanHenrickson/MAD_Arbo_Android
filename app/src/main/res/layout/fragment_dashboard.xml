@@ -99,6 +99,7 @@
                 android:text="Elm Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
+
             <CheckBox
                 android:id="@+id/checkBoxMaple"
                 android:layout_width="match_parent"
@@ -134,11 +135,6 @@
                 android:text="Spruce Trees"
                 tools:layout_editor_absoluteX="182dp"
                 tools:layout_editor_absoluteY="460dp" />
-
-
-
-
-
 
 
         </TableLayout>

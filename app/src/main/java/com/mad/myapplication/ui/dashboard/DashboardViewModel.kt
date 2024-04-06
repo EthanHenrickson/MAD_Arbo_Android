@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 
 class DashboardViewModel : ViewModel() {
 
-    fun onFilterClicked(){
+    fun onFilterClicked() {
         _text.value = "Hi"
     }
 
