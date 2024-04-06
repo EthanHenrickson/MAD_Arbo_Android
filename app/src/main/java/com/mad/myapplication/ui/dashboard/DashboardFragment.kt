@@ -1,7 +1,6 @@
 package com.mad.myapplication.ui.dashboard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,17 +36,6 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         savedInstanceState: Bundle?
     ): View {
 
-        db = Firebase.firestore
-
-        db.collection("trees").get().addOnSuccessListener { result ->
-            for (document in result) {
-                treelist.add(document.data)
-            }
-        }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
-
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
@@ -62,15 +50,24 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
 
 
     override fun onMapReady(googleMap: GoogleMap) {
+        //call database and get all user placed trees
+        db = Firebase.firestore
+        db.collection("trees").get().addOnSuccessListener { result ->
+            for (document in result) {
+                treelist.add(document.data)
+            }
+            filterRefresh()
+        }
+
+        //init google map
         mMap = googleMap
 
-        // Add additional map customizations here
-        // For example, add a marker
-
+        //add markers on map for trees
         for (test in treelist) {
             mMap.addMarker(MarkerOptions().position(LatLng(test.get("lat").toString().toDouble(), test.get("lng").toString().toDouble())).title(""))
         }
 
+        //Sets camera to be in bemidji area
         val bemidji = LatLng(47.47,-94.88)
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(bemidji, 10F))
 
@@ -85,58 +82,63 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         binding.filterButton.setOnClickListener{
-            mMap.clear()
-
-            val treeCheck = mutableListOf<String>()
-
-            if(binding.checkBoxAspen.isChecked){
-                treeCheck.add("aspen")
-            }
-            if(binding.checkBoxAsh.isChecked){
-                treeCheck.add("ash")
-            }
-            if(binding.checkBoxBirch.isChecked){
-                treeCheck.add("birch")
-            }
-            if(binding.checkBoxCedar.isChecked){
-                treeCheck.add("cedar")
-            }
-            if(binding.checkBoxCherry.isChecked){
-                treeCheck.add("cherry")
-            }
-            if(binding.checkBoxElm.isChecked){
-                treeCheck.add("elm")
-            }
-            if(binding.checkBoxMaple.isChecked){
-                treeCheck.add("maple")
-            }
-            if(binding.checkBoxOak.isChecked){
-                treeCheck.add("oak")
-            }
-            if(binding.checkBoxPine.isChecked){
-                treeCheck.add("pine")
-            }
-            if(binding.checkBoxSpruce.isChecked){
-                treeCheck.add("spruce")
-            }
-
-
-            for (test in treelist){
-                if (treeCheck.contains(test.get("type").toString().lowercase())) {
-                    mMap.addMarker(
-                        MarkerOptions().position(
-                            LatLng(
-                                test.get("lat").toString().toDouble(),
-                                test.get("lng").toString().toDouble()
-                            )
-                        ).title("")
-                    )
-                }
-            }
+            filterRefresh()
         }
+
     }
 
 
+
+    fun filterRefresh(){
+        mMap.clear()
+
+        val treeCheck = mutableListOf<String>()
+
+        if(binding.checkBoxAspen.isChecked){
+            treeCheck.add("aspen")
+        }
+        if(binding.checkBoxAsh.isChecked){
+            treeCheck.add("ash")
+        }
+        if(binding.checkBoxBirch.isChecked){
+            treeCheck.add("birch")
+        }
+        if(binding.checkBoxCedar.isChecked){
+            treeCheck.add("cedar")
+        }
+        if(binding.checkBoxCherry.isChecked){
+            treeCheck.add("cherry")
+        }
+        if(binding.checkBoxElm.isChecked){
+            treeCheck.add("elm")
+        }
+        if(binding.checkBoxMaple.isChecked){
+            treeCheck.add("maple")
+        }
+        if(binding.checkBoxOak.isChecked){
+            treeCheck.add("oak")
+        }
+        if(binding.checkBoxPine.isChecked){
+            treeCheck.add("pine")
+        }
+        if(binding.checkBoxSpruce.isChecked){
+            treeCheck.add("spruce")
+        }
+
+
+        for (test in treelist){
+            if (treeCheck.contains(test.get("type").toString().lowercase())) {
+                mMap.addMarker(
+                    MarkerOptions().position(
+                        LatLng(
+                            test.get("lat").toString().toDouble(),
+                            test.get("lng").toString().toDouble()
+                        )
+                    ).title("")
+                )
+            }
+        }
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
