@@ -1,6 +1,8 @@
 package com.mad.myapplication.ui.dashboard
 
+import android.graphics.BitmapRegionDecoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.Firebase
@@ -54,7 +57,10 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         db = Firebase.firestore
         db.collection("trees").get().addOnSuccessListener { result ->
             for (document in result) {
-                treelist.add(document.data)
+                val newDoc = document.data
+                newDoc.put("id", "${document.id}")
+
+                treelist.add(newDoc)
             }
             filterRefresh()
         }
@@ -62,17 +68,6 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         //init google map
         mMap = googleMap
 
-        //add markers on map for trees
-        for (test in treelist) {
-            mMap.addMarker(
-                MarkerOptions().position(
-                    LatLng(
-                        test.get("lat").toString().toDouble(),
-                        test.get("lng").toString().toDouble()
-                    )
-                ).title("")
-            )
-        }
 
         //Sets camera to be in bemidji area
         val bemidji = LatLng(47.47, -94.88)
@@ -91,9 +86,46 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         binding.filterButton.setOnClickListener {
             filterRefresh()
         }
+        binding.selectNoneButton.setOnClickListener {
+            noneSelect()
+        }
+        binding.selectAllButton.setOnClickListener {
+            allSelect()
+        }
 
     }
 
+
+    fun allSelect() {
+        binding.checkBoxAspen.isChecked = true
+        binding.checkBoxAsh.isChecked = true
+        binding.checkBoxBirch.isChecked = true
+        binding.checkBoxCedar.isChecked = true
+        binding.checkBoxCherry.isChecked = true
+        binding.checkBoxElm.isChecked = true
+        binding.checkBoxMaple.isChecked = true
+        binding.checkBoxOak.isChecked = true
+        binding.checkBoxPine.isChecked = true
+        binding.checkBoxSpruce.isChecked = true
+        binding.selectAllButton.visibility = View.INVISIBLE
+        binding.selectNoneButton.visibility = View.VISIBLE
+
+    }
+
+    fun noneSelect() {
+        binding.checkBoxAspen.isChecked = false
+        binding.checkBoxAsh.isChecked = false
+        binding.checkBoxBirch.isChecked = false
+        binding.checkBoxCedar.isChecked = false
+        binding.checkBoxCherry.isChecked = false
+        binding.checkBoxElm.isChecked = false
+        binding.checkBoxMaple.isChecked = false
+        binding.checkBoxOak.isChecked = false
+        binding.checkBoxPine.isChecked = false
+        binding.checkBoxSpruce.isChecked = false
+        binding.selectNoneButton.visibility = View.INVISIBLE
+        binding.selectAllButton.visibility = View.VISIBLE
+    }
 
     fun filterRefresh() {
         mMap.clear()
@@ -140,10 +172,51 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
                             test.get("lat").toString().toDouble(),
                             test.get("lng").toString().toDouble()
                         )
-                    ).title("")
+                    ).title("${test.get("type").toString().capitalize()}   ${test.get("id")}")
+                        .snippet(
+                            "Lat: ${test.get("lat").toString()}  Long: ${
+                                test.get("lng").toString()
+                            }"
+                        ).icon(
+                        BitmapDescriptorFactory.defaultMarker(
+                            colorPicker(test.get("type").toString())
+                        )
+                    )
                 )
             }
         }
+    }
+
+    fun colorPicker(type: String): Float{
+        if(type == "aspen"){
+            return 32.1F
+        }
+        if(type == "ash"){
+            return 62.1F
+        }
+        if(type == "birch"){
+            return 92.1F
+        }
+        if(type == "cedar"){
+            return 359.1F
+        }
+        if(type == "cherry"){
+            return 152.1F
+        }
+        if(type == "elm"){
+            return 182.1F
+        }
+        if(type == "maple"){
+            return 212.1F
+        }
+        if(type == "oak"){
+            return 242.1F
+        }
+        if(type == "pine"){
+            return 272.1f
+        }
+        return 302.1f
+
     }
 
     override fun onDestroyView() {
