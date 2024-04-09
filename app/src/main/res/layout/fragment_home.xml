@@ -4,19 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text_home"
+    <LinearLayout
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/tree_tab_title"
+            android:textSize="20sp"
+            android:gravity="center">
+        </TextView>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/totalTrees"
+        android:layout_width="410dp"
+        android:layout_height="685dp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TextView
+                android:id="@+id/ashDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ash Trees" />
+
+            <TextView
+                android:id="@+id/aspenDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aspen Trees" />
+
+            <TextView
+                android:id="@+id/birchDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birch Trees" />
+
+            <TextView
+                android:id="@+id/cedarDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cedar Trees" />
+
+            <TextView
+                android:id="@+id/cherryDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cherry Trees" />
+
+            <TextView
+                android:id="@+id/elmDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Elm Trees" />
+
+            <TextView
+                android:id="@+id/mapleDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maple Trees" />
+
+            <TextView
+                android:id="@+id/oakDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oak Trees" />
+
+            <TextView
+                android:id="@+id/pineDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pine Trees" />
+
+            <TextView
+                android:id="@+id/spruceDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spruce Trees" />
+
+        </TableLayout>
+
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
