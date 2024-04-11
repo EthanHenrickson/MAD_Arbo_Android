@@ -4,58 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
         android:id="@+id/EncyclopediaTitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/AshTree">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:gravity="center"
             android:text="@string/tree_tab_title"
-            android:textSize="20sp"
-            android:gravity="center">
+            android:textSize="20sp">
+
         </TextView>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/AshTree"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
 
-    <Button
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle"
-        android:id="@+id/expandAsh"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:text="+"
-        android:textSize="20sp"
-        android:gravity="center">
-    </Button>
+        app:layout_constraintTop_toBottomOf="@id/EncyclopediaTitle">
 
-    <TextView
-        android:id="@+id/ashTitle"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:text="@string/ash_trees"
-        android:textSize="20sp"
-        android:gravity="start|fill_horizontal"
-        app:layout_constraintStart_toEndOf="@+id/expandAsh"
-        app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle">
-    </TextView>
+        <Button
+            android:id="@+id/expandAsh"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="20sp">
+        </Button>
 
-    <TextView
-        android:id="@+id/ashInfo"
-        android:layout_width="360dp"
-        android:layout_height="50dp"
-        android:text="ash info blah blah"
-        android:textSize="15sp"
-        android:gravity="start|fill_horizontal"
-        app:layout_constraintStart_toEndOf="@id/expandAsh"
-        app:layout_constraintTop_toBottomOf="@+id/ashTitle">
-        <!--
-        android:visibility="gone"
-        -->
-    </TextView>
+        <TextView
+            android:id="@+id/ashTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="@string/ash_trees"
+            android:textSize="20sp"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@+id/expandAsh"
+            app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle"
+            app:layout_constraintEnd_toEndOf="parent">
+        </TextView>
+
+        <TextView
+            android:id="@+id/ashInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="-12dp"
+            android:text="ash info blah blah"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/expandAsh"
+            app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle"
+            app:layout_constraintEnd_toEndOf="parent">
+            <!--
+            android:visibility="gone"
+            -->
+        </TextView>
+
+    </LinearLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
