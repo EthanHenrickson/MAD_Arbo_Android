@@ -129,7 +129,7 @@ class NotificationsFragment : Fragment(), OnMapReadyCallback, OnMarkerDragListen
 
         db = Firebase.firestore
         binding.submitButton.setOnClickListener{
-            val name = binding.submitNewPoint.text.toString()
+
             val lat = binding.lat.text.toString().toDouble()
             val lng = binding.lng.text.toString().toDouble()
 
