@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/title"
+        android:id="@+id/EncyclopediaTitle"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
@@ -21,81 +21,41 @@
     </LinearLayout>
 
 
-    <ScrollView
-        android:id="@+id/totalTrees"
-        android:layout_width="410dp"
-        android:layout_height="685dp"
+    <Button
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle"
+        android:id="@+id/expandAsh"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="+"
+        android:textSize="20sp"
+        android:gravity="center">
+    </Button>
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title">
+    <TextView
+        android:id="@+id/ashTitle"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:text="@string/ash_trees"
+        android:textSize="20sp"
+        android:gravity="start|fill_horizontal"
+        app:layout_constraintStart_toEndOf="@+id/expandAsh"
+        app:layout_constraintTop_toBottomOf="@+id/EncyclopediaTitle">
+    </TextView>
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1">
+    <TextView
+        android:id="@+id/ashInfo"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:text="ash info blah blah"
+        android:textSize="15sp"
+        android:gravity="start|fill_horizontal"
+        app:layout_constraintStart_toEndOf="@id/expandAsh"
+        app:layout_constraintTop_toBottomOf="@+id/ashTitle">
+        <!--
+        android:visibility="gone"
+        -->
+    </TextView>
 
-            <TextView
-                android:id="@+id/ashDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ash Trees" />
-
-            <TextView
-                android:id="@+id/aspenDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aspen Trees" />
-
-            <TextView
-                android:id="@+id/birchDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Birch Trees" />
-
-            <TextView
-                android:id="@+id/cedarDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cedar Trees" />
-
-            <TextView
-                android:id="@+id/cherryDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cherry Trees" />
-
-            <TextView
-                android:id="@+id/elmDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Elm Trees" />
-
-            <TextView
-                android:id="@+id/mapleDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Maple Trees" />
-
-            <TextView
-                android:id="@+id/oakDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Oak Trees" />
-
-            <TextView
-                android:id="@+id/pineDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Pine Trees" />
-
-            <TextView
-                android:id="@+id/spruceDetails"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Spruce Trees" />
-
-        </TableLayout>
-
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
