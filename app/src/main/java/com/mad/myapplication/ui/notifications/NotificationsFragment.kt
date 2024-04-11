@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -132,14 +133,27 @@ class NotificationsFragment : Fragment(), OnMapReadyCallback, OnMarkerDragListen
 
             val lat = binding.lat.text.toString().toDouble()
             val lng = binding.lng.text.toString().toDouble()
+            val notes = binding.notes.text.toString()
+            val type = binding.type.text.toString()
 
             val data = hashMapOf(
                 "lat" to lat,
                 "lng" to lng,
-                "type" to "oak"
+                "type" to type,
+                "notes" to notes
             )
 
             db.collection("trees").add(data)
+
+            binding.lat.setText("47.48555773270")
+            binding.lng.setText("-94.8789536207")
+            binding.notes.setText("")
+            binding.type.setText("")
+
+            marker.position = LatLng(binding.lat.text.toString().toDouble(), binding.lng.text.toString().toDouble())
+
+            Toast.makeText(requireContext(), "Added Tree!", Toast.LENGTH_SHORT).show()
+
         }
 
     }
