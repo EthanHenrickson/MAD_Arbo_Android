@@ -9,7 +9,9 @@
         android:id="@+id/navigation_home"
         android:name="com.mad.myapplication.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -22,4 +24,11 @@
         android:name="com.mad.myapplication.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_data"
+        android:name="com.mad.myapplication.ui.home.DataFragment"
+        android:label="Detail Tree View"
+        tools:layout="@layout/fragment_data">
+    </fragment>
 </navigation>

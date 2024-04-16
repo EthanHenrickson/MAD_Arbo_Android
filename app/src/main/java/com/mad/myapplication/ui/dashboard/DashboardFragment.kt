@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -19,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import com.mad.myapplication.MainViewModel
 import com.mad.myapplication.R
 import com.mad.myapplication.databinding.FragmentDashboardBinding
 
@@ -32,6 +35,7 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
     private lateinit var db: FirebaseFirestore
     private val treelist = mutableListOf<Map<String, Any>>()
     var TAG = "Tester"
+    private val viewModel: MainViewModel.SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +59,7 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         //call database and get all user placed trees
         db = Firebase.firestore
+
         db.collection("trees").get().addOnSuccessListener { result ->
             for (document in result) {
                 val newDoc = document.data
@@ -78,6 +83,83 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        //Lots of Code to keep data same between Home and Dashboard
+        viewModel.data.observe(viewLifecycleOwner, Observer { formData ->
+
+            binding.checkBoxAspen.isChecked = formData.field2
+            binding.checkBoxAsh.isChecked = formData.field1
+            binding.checkBoxBirch.isChecked = formData.field3
+            binding.checkBoxCedar.isChecked = formData.field4
+            binding.checkBoxCherry.isChecked = formData.field5
+            binding.checkBoxElm.isChecked = formData.field6
+            binding.checkBoxMaple.isChecked = formData.field7
+            binding.checkBoxOak.isChecked = formData.field8
+            binding.checkBoxPine.isChecked = formData.field9
+            binding.checkBoxSpruce.isChecked = formData.field10
+            // Update your views here
+
+        })
+
+        binding.checkBoxAsh.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field1 = binding.checkBoxAsh.isChecked
+            viewModel.data.value = updatedData
+        }
+
+        binding.checkBoxAspen.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field2 = binding.checkBoxAspen.isChecked
+            viewModel.data.value = updatedData
+        }
+
+        binding.checkBoxBirch.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field3 = binding.checkBoxBirch.isChecked
+            viewModel.data.value = updatedData
+        }
+
+        binding.checkBoxCedar.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field4 = binding.checkBoxCedar.isChecked
+            viewModel.data.value = updatedData
+        }
+
+        binding.checkBoxCherry.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field5 = binding.checkBoxCherry.isChecked
+            viewModel.data.value = updatedData
+        }
+        binding.checkBoxElm.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field6 = binding.checkBoxElm.isChecked
+            viewModel.data.value = updatedData
+        }
+        binding.checkBoxMaple.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field7 = binding.checkBoxMaple.isChecked
+            viewModel.data.value = updatedData
+        }
+        binding.checkBoxOak.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field8 = binding.checkBoxOak.isChecked
+            viewModel.data.value = updatedData
+        }
+        binding.checkBoxPine.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field9 = binding.checkBoxPine.isChecked
+            viewModel.data.value = updatedData
+        }
+        binding.checkBoxSpruce.setOnClickListener {
+            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+            updatedData.field10 = binding.checkBoxSpruce.isChecked
+            viewModel.data.value = updatedData
+        }
+
+
+
+
+
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
 
         // Asynchronously initialize the map
@@ -97,6 +179,9 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
 
 
     fun allSelect() {
+
+        val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+
         binding.checkBoxAspen.isChecked = true
         binding.checkBoxAsh.isChecked = true
         binding.checkBoxBirch.isChecked = true
@@ -110,9 +195,22 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         binding.selectAllButton.visibility = View.INVISIBLE
         binding.selectNoneButton.visibility = View.VISIBLE
 
+        updatedData.field2 = true
+        updatedData.field1 = true
+        updatedData.field3 = true
+        updatedData.field4 = true
+        updatedData.field5 = true
+        updatedData.field6 = true
+        updatedData.field7 = true
+        updatedData.field8 = true
+        updatedData.field9 = true
+        updatedData.field10 = true
+
     }
 
     fun noneSelect() {
+        val updatedData = viewModel.data.value ?: MainViewModel.FormData()
+
         binding.checkBoxAspen.isChecked = false
         binding.checkBoxAsh.isChecked = false
         binding.checkBoxBirch.isChecked = false
@@ -125,6 +223,18 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         binding.checkBoxSpruce.isChecked = false
         binding.selectNoneButton.visibility = View.INVISIBLE
         binding.selectAllButton.visibility = View.VISIBLE
+
+
+        updatedData.field2 = false
+        updatedData.field1 = false
+        updatedData.field3 = false
+        updatedData.field4 = false
+        updatedData.field5 = false
+        updatedData.field6 = false
+        updatedData.field7 = false
+        updatedData.field8 = false
+        updatedData.field9 = false
+        updatedData.field10 = false
     }
 
     fun filterRefresh() {
