@@ -24,6 +24,7 @@ import com.google.firebase.firestore.firestore
 import com.mad.myapplication.MainViewModel
 import com.mad.myapplication.R
 import com.mad.myapplication.databinding.FragmentDashboardBinding
+import com.mad.myapplication.miniDatabase2
 
 class DashboardFragment : Fragment(), OnMapReadyCallback {
 
@@ -80,80 +81,75 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        binding.checkBoxAspen.isChecked = miniDatabase2.field2
+        binding.checkBoxAsh.isChecked = miniDatabase2.field1
+        binding.checkBoxBirch.isChecked = miniDatabase2.field3
+        binding.checkBoxCedar.isChecked = miniDatabase2.field4
+        binding.checkBoxCherry.isChecked = miniDatabase2.field5
+        binding.checkBoxElm.isChecked = miniDatabase2.field6
+        binding.checkBoxMaple.isChecked = miniDatabase2.field7
+        binding.checkBoxOak.isChecked = miniDatabase2.field8
+        binding.checkBoxPine.isChecked = miniDatabase2.field9
+        binding.checkBoxSpruce.isChecked = miniDatabase2.field10
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
         //Lots of Code to keep data same between Home and Dashboard
-        viewModel.data.observe(viewLifecycleOwner, Observer { formData ->
 
-            binding.checkBoxAspen.isChecked = formData.field2
-            binding.checkBoxAsh.isChecked = formData.field1
-            binding.checkBoxBirch.isChecked = formData.field3
-            binding.checkBoxCedar.isChecked = formData.field4
-            binding.checkBoxCherry.isChecked = formData.field5
-            binding.checkBoxElm.isChecked = formData.field6
-            binding.checkBoxMaple.isChecked = formData.field7
-            binding.checkBoxOak.isChecked = formData.field8
-            binding.checkBoxPine.isChecked = formData.field9
-            binding.checkBoxSpruce.isChecked = formData.field10
+
+            binding.checkBoxAspen.isChecked = miniDatabase2.field2
+            binding.checkBoxAsh.isChecked = miniDatabase2.field1
+            binding.checkBoxBirch.isChecked = miniDatabase2.field3
+            binding.checkBoxCedar.isChecked = miniDatabase2.field4
+            binding.checkBoxCherry.isChecked = miniDatabase2.field5
+            binding.checkBoxElm.isChecked = miniDatabase2.field6
+            binding.checkBoxMaple.isChecked = miniDatabase2.field7
+            binding.checkBoxOak.isChecked = miniDatabase2.field8
+            binding.checkBoxPine.isChecked = miniDatabase2.field9
+            binding.checkBoxSpruce.isChecked = miniDatabase2.field10
             // Update your views here
 
-        })
+
 
         binding.checkBoxAsh.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field1 = binding.checkBoxAsh.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field1 = binding.checkBoxAsh.isChecked
         }
 
         binding.checkBoxAspen.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field2 = binding.checkBoxAspen.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field2 = binding.checkBoxAspen.isChecked
         }
 
         binding.checkBoxBirch.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field3 = binding.checkBoxBirch.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field3 = binding.checkBoxBirch.isChecked
         }
 
         binding.checkBoxCedar.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field4 = binding.checkBoxCedar.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field4 = binding.checkBoxCedar.isChecked
         }
 
         binding.checkBoxCherry.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field5 = binding.checkBoxCherry.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field5 = binding.checkBoxCherry.isChecked
         }
         binding.checkBoxElm.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field6 = binding.checkBoxElm.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field6 = binding.checkBoxElm.isChecked
         }
         binding.checkBoxMaple.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field7 = binding.checkBoxMaple.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field7 = binding.checkBoxMaple.isChecked
         }
         binding.checkBoxOak.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field8 = binding.checkBoxOak.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field8 = binding.checkBoxOak.isChecked
         }
         binding.checkBoxPine.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field9 = binding.checkBoxPine.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field9 = binding.checkBoxPine.isChecked
         }
         binding.checkBoxSpruce.setOnClickListener {
-            val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-            updatedData.field10 = binding.checkBoxSpruce.isChecked
-            viewModel.data.value = updatedData
+            miniDatabase2.field10 = binding.checkBoxSpruce.isChecked
         }
 
 
@@ -180,8 +176,6 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
 
     fun allSelect() {
 
-        val updatedData = viewModel.data.value ?: MainViewModel.FormData()
-
         binding.checkBoxAspen.isChecked = true
         binding.checkBoxAsh.isChecked = true
         binding.checkBoxBirch.isChecked = true
@@ -195,16 +189,16 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         binding.selectAllButton.visibility = View.INVISIBLE
         binding.selectNoneButton.visibility = View.VISIBLE
 
-        updatedData.field2 = true
-        updatedData.field1 = true
-        updatedData.field3 = true
-        updatedData.field4 = true
-        updatedData.field5 = true
-        updatedData.field6 = true
-        updatedData.field7 = true
-        updatedData.field8 = true
-        updatedData.field9 = true
-        updatedData.field10 = true
+        miniDatabase2.field2 = true
+        miniDatabase2.field1 = true
+        miniDatabase2.field3 = true
+        miniDatabase2.field4 = true
+        miniDatabase2.field5 = true
+        miniDatabase2.field6 = true
+        miniDatabase2.field7 = true
+        miniDatabase2.field8 = true
+        miniDatabase2.field9 = true
+        miniDatabase2.field10 = true
 
     }
 
@@ -225,16 +219,16 @@ class DashboardFragment : Fragment(), OnMapReadyCallback {
         binding.selectAllButton.visibility = View.VISIBLE
 
 
-        updatedData.field2 = false
-        updatedData.field1 = false
-        updatedData.field3 = false
-        updatedData.field4 = false
-        updatedData.field5 = false
-        updatedData.field6 = false
-        updatedData.field7 = false
-        updatedData.field8 = false
-        updatedData.field9 = false
-        updatedData.field10 = false
+        miniDatabase2.field2 = false
+        miniDatabase2.field1 = false
+        miniDatabase2.field3 = false
+        miniDatabase2.field4 = false
+        miniDatabase2.field5 = false
+        miniDatabase2.field6 = false
+        miniDatabase2.field7 = false
+        miniDatabase2.field8 = false
+        miniDatabase2.field9 = false
+        miniDatabase2.field10 = false
     }
 
     fun filterRefresh() {
